@@ -2,10 +2,10 @@ const {Schema, model, default: mongoose} = require('mongoose')
 
 const CategorysSchema = new Schema( {
     name: {type: String, required: true},
-    total_products: {type: Number, required: true},
-    products: {type: [mongoose.Types.ObjectId], ref: 'Products', required: true}
+    total_products: {type: Number, required: true, default: 0},
+    products: {type: [mongoose.Types.ObjectId], ref: 'Products'}
 })
 
-const Categorys =  model(CategorysSchema, 'Categorys')
+const Categorys =  model( 'Categorys',CategorysSchema)
 
 module.exports = Categorys

@@ -23,14 +23,17 @@ const PORT = 3000;
 
 // Middleware para servir archivos estáticos
 app.use(express.static(path.join(__dirname, 'dist')));
+morgan.token('body', (req) => JSON.stringify(req.body)); 
+morgan.token('headers', (req) => JSON.stringify(req.headers)); 
+    
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body :headers'));
 app.use(cors()) 
 
 // Rutas
 // app.use('/api/productos' , routesProductos )
-// app.use('/api/categorias', routesCategorias)
 // app.use('/api/despachos', routesDespachos)
 // app.use('/api/pedidos', routesPedidos)
+app.use('/api/categorias', routesCategorias)
 app.use('/api/usuario' , routesUsuario )
 // app.get('/', (req, res) => {
 //     res.sendFile(path.join(__dirname, 'views', 'index.html'));
